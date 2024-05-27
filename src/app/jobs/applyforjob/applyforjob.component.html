@@ -1,0 +1,29 @@
+<!-- apply-for-job.component.html -->
+<main>
+  <h1 class="text-center">Apply For Job</h1>
+  <div class="container">
+    <form (ngSubmit)="onSubmit()" #jobApplicationForm="ngForm" enctype="multipart/form-data">
+      <input type="hidden" name="ja_j_id" [value]="jobId">
+
+      <div class="form-group">
+        <label for="cvfile"><b>Upload C.V:</b></label>
+        <input type="file" name="file" id="cvfile" accept=".pdf" required (change)="onFileChange($event)" class="form-control"/>
+      </div>
+
+      <div class="form-group">
+        <label for="enquiry"><b>Message: </b></label>
+        <textarea id="enquiry" name="ja_message" [(ngModel)]="ja_message" placeholder="Enter Message" rows="4" cols="50" required class="form-control"></textarea>
+      </div>
+
+      <br />
+      <button type="submit" [disabled]="!jobApplicationForm.form.valid && this.file">Submit</button>
+
+      <div *ngIf="errorMessage" class="mt-3 alert alert-danger" role="alert">
+        {{ errorMessage }}
+      </div>
+      <div *ngIf="message" class="mt-3 alert alert-success" role="alert">
+        {{ message }}
+      </div>
+    </form>
+  </div>
+</main>

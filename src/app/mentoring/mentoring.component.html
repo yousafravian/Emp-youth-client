@@ -1,0 +1,66 @@
+<main>
+  <h1 class="text-center">Mentoring</h1>
+  <div class="container">
+    <form (ngSubmit)="onSubmit()" #mentoringForm="ngForm">
+      <label for="m_name"><b> Full Name:</b></label>
+      <input
+        id="m_name"
+        type="text"
+        placeholder="Enter Name"
+        name="m_name"
+        [(ngModel)]="mentoring.m_name"
+        required
+      />
+
+      <label for="m_email"><b>Email:</b></label>
+      <input
+        id="m_email"
+        type="email"
+        placeholder="Enter Email"
+        name="m_email"
+        [(ngModel)]="mentoring.m_email"
+        required
+      />
+
+      <label for="m_phone"><b> Phone Number: </b></label>
+      <input
+        id="m_phone"
+        type="tel"
+        placeholder="Enter Phone Number"
+        name="m_phone"
+        [(ngModel)]="mentoring.m_phone"
+        required
+      />
+
+      <label for="m_enquiry"><b>Enquiry: </b></label>
+      <textarea
+        id="m_enquiry"
+        name="m_enquiry"
+        placeholder="Enter Enquiry"
+        rows="4"
+        cols="50"
+        [(ngModel)]="mentoring.m_enquiry"
+        required
+      ></textarea>
+
+      <label for="cvfile"><b>Upload C.V:</b></label>
+      <input
+        type="file"
+        name="file"
+        id="cvfile"
+        (change)="onFileChange($event)"
+        accept=".pdf"
+        required
+      />
+      <br />
+      <button type="submit" [disabled]="mentoringForm.invalid">Submit</button>
+
+      <div *ngIf="error_message" class="mt-3 alert alert-danger" role="alert">
+        {{ error_message }}
+      </div>
+      <div *ngIf="message" class="mt-3 alert alert-success" role="alert">
+        {{ message }}
+      </div>
+    </form>
+  </div>
+</main>

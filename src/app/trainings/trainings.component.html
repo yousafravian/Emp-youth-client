@@ -1,0 +1,68 @@
+<main>
+  <div class="container">
+    <h1 class="text-center">Training</h1>
+
+    <div class="row mb-2">
+      <div class="col-md-12">
+        <div class="card skillsbox">
+          <h3>What skills do you wish to acquire?</h3>
+          <p>(You can select multiple)</p>
+          <form id="skillsform" (ngSubmit)="onSubmit()">
+            <div class="row mb-2">
+              <div class="col-md-4 mb-2" *ngFor="let skill of skills">
+                <div class="card selectedSkills" [class.selected]="selectedSkills[skill]" (click)="toggleSelection(skill)">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ skill }}</h5>
+                  </div>
+                  <input type="checkbox" name="selectedSkills" [value]="skill" class="d-none" [(ngModel)]="selectedSkills[skill]">
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="float-right">Submit</button>
+          </form>
+
+          <div *ngIf="errorMessage" class="mt-3 alert alert-danger" role="alert">
+            {{ errorMessage }}
+          </div>
+          <div *ngIf="message" class="mt-3 alert alert-success" role="alert">
+            {{ message }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-2 second-row">
+      <div class="col-md-6 most-popular">
+        <h3>Most Popular Courses</h3>
+        <div class="row">
+          <div class="col-md-12 mb-2" *ngFor="let course of mostPopularCourses">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{ course.title }}</h5>
+                <p class="card-text">{{ course.description }}</p>
+                <a [href]="course.link" class="btn button addmorelink">See More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 most-popular">
+        <h3>Training Courses Available Online</h3>
+        <div class="row">
+          <div class="col-md-12 mb-2" *ngFor="let course of trainingCourses">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{ course.title }}</h5>
+                <p class="card-text">{{ course.description }}</p>
+                <a [href]="course.link" class="btn button addmorelink">See More</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!--    <div id="training-courses-container" [innerHTML]="trainingCoursesHtml"></div>-->
+  </div>
+</main>

@@ -1,0 +1,192 @@
+<main>
+  <h1 style="display: flex;">Theme
+    <div
+      style="width: 30px; height: 30px; border-radius: 50%; margin-left: 10px; margin-top: 10px;" [style.background-color]="formData.theme === 'blue' ? '#0C243A' : '#007759'">
+    </div>
+  </h1>
+
+  <div class="container">
+    <form (ngSubmit)="onSubmit()" #ngForm='ngForm'>
+      <div class="form-group">
+        <select name="theme" hidden>
+          <option [value]="formData.theme">{{ formData.theme }}</option>
+        </select>
+      </div>
+
+      <div class="row mb-2">
+        <div class="col-md-4">
+          <label for="name"><b> Full Name:</b></label>
+          <input id="name" type="text" placeholder="Enter Name" [(ngModel)]="formData.name" name="name" required />
+        </div>
+        <div class="col-md-4">
+          <label for="fname"><b> Father Name:</b></label>
+          <input id="fname" type="text" placeholder="Enter Name" [(ngModel)]="formData.fname" name="fname" required />
+        </div>
+        <div class="col-md-4">
+          <label for="mname"><b> Mother Name:</b></label>
+          <input id="mname" type="text" placeholder="Enter Name" [(ngModel)]="formData.mname" name="mname" required />
+        </div>
+      </div>
+
+      <div class="row mb-2">
+        <div class="col-md-4">
+          <label for="dob"><b> Date of Birth:</b></label>
+          <input id="dob" type="date" [(ngModel)]="formData.dob" name="dob" required>
+        </div>
+        <div class="col-md-8">
+          <label for="address"><b> Address:</b></label>
+          <input id="address" type="text" placeholder="Enter Address" [(ngModel)]="formData.address" name="address" required />
+        </div>
+      </div>
+
+      <div class="row mb-2">
+        <div class="col-md-12">
+          <label for="aboutme"><b>About Me: </b></label>
+          <textarea id="aboutme" required [(ngModel)]="formData.aboutme" name="aboutme" placeholder="About Me" rows="4" cols="50"></textarea>
+        </div>
+      </div>
+
+      <div class="row mb-2">
+        <div class="col-md-4">
+          <label for="phone"><b>Phone:</b></label>
+          <input id="phone" type="text" placeholder="Enter Phone" [(ngModel)]="formData.phone" name="phone" required />
+        </div>
+        <div class="col-md-4">
+          <label for="email"><b>Email:</b></label>
+          <input id="email" type="text" placeholder="Enter Email" [(ngModel)]="formData.email" name="email" required />
+        </div>
+        <div class="col-md-4">
+          <label for="nationality"><b>Nationality:</b></label>
+          <input id="nationality" type="text" placeholder="Enter Nationality" [(ngModel)]="formData.nationality" name="nationality" required />
+        </div>
+      </div>
+
+      <div class="row mb-2">
+        <div class="col-md-12">
+          <label for="name"><b>Extra Skills:</b></label>
+          <div class="skills-checkbox">
+            <label>
+              <input type="checkbox" [(ngModel)]="formData.skills['teamwork']" name="skills" value="teamwork">
+              Teamwork
+            </label>
+            <label>
+            <input type="checkbox" [(ngModel)]="formData.skills['initiative']" name="skills" value="initiative">
+              Initiative
+            </label>
+            <label>
+            <input type="checkbox" [(ngModel)]="formData.skills['leadership']" name="skills" value="leadership">
+              Leadership
+            </label>
+            <label>
+            <input type="checkbox" [(ngModel)]="formData.skills['professionalism']" name="skills" value="professionalism">
+              Professionalism
+            </label>
+            <label>
+            <input type="checkbox" [(ngModel)]="formData.skills['analytical']" name="skills" value="analytical">
+              Analytical
+            </label>
+            <label>
+            <input type="checkbox" [(ngModel)]="formData.skills['organised']" name="skills" value="organised">
+              Organised
+            </label>
+            <label>
+              <input type="checkbox" [(ngModel)]="formData.skills['ability']" name="skills" value="ability">
+              Ability to work under pressure
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <hr/>
+
+      <div class="row mb-2">
+        <div class="col-md-12">
+          <h5>Educational Information</h5>
+          <span id="educational_info">
+            <div *ngFor="let education of formData.educationalInfo; let i = index" class="row">
+              <div class="col-md-3">
+                <label for="degree"><b>Degree Name:</b></label>
+                <input id="degree" type="text" placeholder="Enter Degree Name" [(ngModel)]="education.degree" name="degrees[]" required>
+              </div>
+              <div class="col-md-5">
+                <label for="university"><b>University Name:</b></label>
+                <input id="university" type="text" placeholder="Enter University Name" [(ngModel)]="education.university" name="universities[]" required>
+              </div>
+              <div class="col-md-2">
+                <label for="start_year"><b>Start Year:</b></label>
+                <input id="start_year" type="date" [(ngModel)]="education.startYear" name="startYears[]" required>
+              </div>
+              <div class="col-md-2">
+                <label for="end_year"><b>End Year:</b></label>
+                <input id="end_year" type="date" [(ngModel)]="education.endYear" name="endYears[]" required>
+              </div>
+            </div>
+          </span>
+          <button type="button" class="addmorebtn" (click)="addMore('education')">Add</button>
+        </div>
+      </div>
+
+      <hr/>
+
+      <div class="row mb-2">
+        <div class="col-md-12">
+          <h5>Professional Skills</h5>
+          <span id="key_skills">
+            <div *ngFor="let skill of formData.keySkills; let i = index" class="row">
+              <div class="col-md-12">
+                <label for="skill"><b>Skill:</b></label>
+                <input id="skill" type="text" placeholder="i.e Strong analytical & problem solving skills" [(ngModel)]="skill.skill" name="key_skills[]" required>
+              </div>
+            </div>
+          </span>
+          <button type="button" class="addmorebtn" (click)="addMore('keySkill')">Add</button>
+        </div>
+      </div>
+
+      <hr/>
+
+      <div class="row mb-2">
+        <div class="col-md-12">
+          <h5>Expertise Area</h5>
+          <span id="expertise_area">
+            <div *ngFor="let expertise of formData.expertise_area; let i = index" class="row">
+              <div class="col-md-12">
+                <label for="expertise"><b>Expertise Area:</b></label>
+                <input id="expertise" type="text" placeholder="i.e Digital Marketing" [(ngModel)]="expertise.area" name="expertise_area[]" required>
+              </div>
+            </div>
+          </span>
+          <button type="button" class="addmorebtn" (click)="addMore('expertise')">Add</button>
+        </div>
+      </div>
+
+      <hr/>
+
+      <div class="row mb-2">
+        <div class="col-md-12">
+          <h5>Hobbies</h5>
+          <span id="hobbies">
+            <div *ngFor="let hobby of formData.hobbies; let i = index" class="row">
+              <div class="col-md-12">
+                <label for="hobby"><b>Hobby:</b></label>
+                <input id="hobby" type="text" placeholder="i.e Travelling" [(ngModel)]="hobby.hobby" name="hobbies[]" required>
+              </div>
+            </div>
+          </span>
+          <button type="button" class="addmorebtn" (click)="addMore('hobby')">Add</button>
+        </div>
+      </div>
+
+      <hr/>
+
+      <div class="row mb-2">
+        <div class="col-md-12">
+          <label for="startdate"><b> Preferred Start Date:</b></label>
+          <input id="startdate" type="date" [(ngModel)]="formData.startDate" name="startdate" required>
+        </div>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</main>

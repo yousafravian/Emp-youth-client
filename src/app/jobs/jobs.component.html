@@ -1,0 +1,35 @@
+<!-- jobs.component.html -->
+<main>
+  <div class="container">
+    <h1 class="text-center">Jobs</h1>
+
+    <div class="row">
+      <!-- Check if there are any jobs -->
+      <div *ngIf="jobs.length === 0" class="col-md-12">
+        <div class="card text-center">
+          <div class="card-body">
+            <p class="card-text">No Data Found!</p>
+          </div>
+        </div>
+      </div>
+      <!-- Loop through jobs and display each one -->
+      <div *ngFor="let job of jobs" class="col-md-4 job-listing">
+        <div class="card joblinks">
+          <div class="card-body">
+            <h5 class="card-title">{{ job.j_title }}</h5>
+            <p class="card-text">{{ job.j_cname }}</p>
+            <p class="card-text">
+              Deadline: <span class="text-danger">
+                {{ job.j_appdeadline | date: 'd/M/yyyy' }}
+              </span>
+            </p>
+            <a [routerLink]="['/jobs', job._id]" class="btn button">View Details</a>
+          </div>
+          <div class="card-footer text-right text-muted">
+            Date Posted: {{ job.created_at | date: 'd/M/yyyy' }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

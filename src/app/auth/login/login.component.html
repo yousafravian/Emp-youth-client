@@ -1,0 +1,40 @@
+<br />
+<div class="login">
+  <div class="login-box">
+    <h1 class="text-center">Login</h1>
+
+    <form (ngSubmit)="onSignIn()">
+      <div class="container">
+        <label for="email"><b>Email:</b></label>
+        <input
+          id="email"
+          type="text"
+          placeholder="Enter Email"
+          name="email"
+          [(ngModel)]="username"
+          required
+        />
+
+        <label for="password"><b>Password:</b></label>
+        <input
+          id="password"
+          type="password"
+          placeholder="Enter Password"
+          name="password"
+          [(ngModel)]="password"
+          required
+        />
+
+        <button type="submit">Login</button>
+
+        @if(error) {
+          <div class="mt-3 alert alert-danger" role="alert">{{ error }}</div>
+        }
+
+        <hr />
+        <a routerLink="../forgot">Forgot Password?&nbsp;</a>
+        <a routerLink="../register">Create an Account</a>
+      </div>
+    </form>
+  </div>
+</div>

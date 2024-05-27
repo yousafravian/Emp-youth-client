@@ -1,0 +1,66 @@
+<div class="postajob">
+  <div class="job-box">
+    <h1 class="text-center">Post a Job</h1>
+
+    <form (ngSubmit)="onSubmit()" #jobForm="ngForm">
+      <div class="container">
+        <label for="j_cname"><b> Company Name:</b></label>
+        <input
+          id="j_cname"
+          type="text"
+          placeholder="Enter Company Name"
+          name="j_cname"
+          [(ngModel)]="job.j_cname"
+          required
+        />
+
+        <label for="j_email"><b>Email:</b></label>
+        <input
+          id="j_email"
+          type="email"
+          placeholder="Enter Email"
+          name="j_email"
+          pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{1,}$"
+          [(ngModel)]="job.j_email"
+          required
+        />
+
+        <label for="j_title"><b> Job Title:</b></label>
+        <input
+          id="j_title"
+          type="text"
+          placeholder="Enter Job Title"
+          name="j_title"
+          [(ngModel)]="job.j_title"
+          required
+        />
+
+        <label for="j_description"><b>Job Description:</b></label>
+        <textarea
+          id="j_description"
+          name="j_description"
+          placeholder="Enter the job description here..."
+          [(ngModel)]="job.j_description"
+          required
+        ></textarea>
+
+        <label for="j_appdeadline"><b>Application Deadline:</b></label>
+        <input
+          type="date"
+          id="j_appdeadline"
+          name="j_appdeadline"
+          [(ngModel)]="job.j_appdeadline"
+          required
+        />
+
+        <button type="submit" [disabled]="jobForm.invalid" class="postbutton">Post</button>
+
+        <div *ngIf="message" class="mt-3 alert alert-success" role="alert">
+          {{ message }}
+        </div>
+
+        <br />
+      </div>
+    </form>
+  </div>
+</div>

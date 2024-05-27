@@ -1,0 +1,42 @@
+.skillsbox {
+  margin: 20px 0;
+}
+
+.selectedSkills {
+  cursor: pointer;
+}
+
+.selectedSkills.selected {
+  background-color: #e7f3ff;
+}
+
+.float-right {
+  float: right;
+}
+
+.alert {
+  margin-top: 20px;
+}
+
+.button {
+  background-color: #007bff;
+  color: white;
+}
+
+.button.addmorelink {
+  display: block;
+  margin-top: 10px;
+}
+
+.addmorebtn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.addmorebtn:hover {
+  background-color: #0056b3;
+}

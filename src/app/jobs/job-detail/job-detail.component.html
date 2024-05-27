@@ -1,0 +1,41 @@
+<!-- job-detail.component.html -->
+<main>
+  <div class="container">
+    <h1 class="text-center">Job Detail</h1>
+
+    <div class="row" *ngIf="job">
+      <div class="col-md-12 job-listing">
+        <div class="card joblinks">
+          <div class="card-body">
+            <h5 class="card-title">{{ job.j_title }}</h5>
+            <p class="card-text">{{ job.j_cname }}</p>
+            <p class="card-text">{{ job.j_description }}</p>
+            <p class="card-text">
+              Deadline: <span class="text-danger">
+                {{ job.j_appdeadline | date: 'd/M/yyyy' }}
+              </span>
+            </p>
+
+            <ng-container *ngIf="user?.userType === 'student'">
+              <ng-container *ngIf="job.already_applied === 'yes'">
+                <span class="already-applied">Already Applied</span>
+              </ng-container>
+              <ng-container *ngIf="job.already_applied !== 'yes'">
+                <a [routerLink]="['/applyforjob', job._id]" class="btn button">Apply Now</a>
+              </ng-container>
+            </ng-container>
+
+            <ng-container *ngIf="user?.userType === 'employer'">
+              <p class="card-text">
+                Job Applications: {{ job.jobApplicationsCount }}
+              </p>
+            </ng-container>
+          </div>
+          <div class="card-footer text-right text-muted">
+            Date Posted: {{ job.created_at | date: 'd/M/yyyy' }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,39 @@
+<main>
+  <div class="container">
+    <h1 class="text-center">Mentoring Requests</h1>
+
+    <div class="row">
+      <!-- Job Listing 1 -->
+      <div *ngIf="mentorings.length === 0" class="col-md-12">
+        <div class="card text-center">
+          <div class="card-body">
+            <p class="card-text">No Mentorings Found!</p>
+          </div>
+        </div>
+      </div>
+      <ng-container *ngIf="mentorings.length > 0">
+        <div *ngFor="let mentoring of mentorings" class="col-md-4 job-listing">
+          <div class="card joblinks">
+            <div class="card-body">
+              <h5 class="card-title">
+                {{ mentoring.m_name }}
+              </h5>
+              <p class="card-text">
+                {{ mentoring.m_email }}
+              </p>
+              <p class="card-text">
+                {{ mentoring.m_phone }}
+              </p>
+              <p class="card-text">
+                {{ mentoring.m_enquiry }}
+              </p>
+            </div>
+            <div class="card-footer text-right text-muted">
+              <a class="btn btn-link" (click)="onViewAttachment(mentoring._id)">View Attachment</a>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</main>

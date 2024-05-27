@@ -1,0 +1,50 @@
+<nav>
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <a routerLink="/"><img src="/assets/logo.png" alt="" width="400px" /></a>
+    <ng-container *ngIf="user">
+      <div class="dropdown">
+        <button class="dropbutton">
+          Profile <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <ng-container *ngIf="!user">
+            <a routerLink="/login">Login</a>
+            <a routerLink="/register">Register</a>
+          </ng-container>
+          <ng-container *ngIf="user">
+            <a (click)="logout()" class="text-white">Logout</a>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropbutton">
+          Jobs <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <ng-container *ngIf="user && user.userType === 'employer'">
+            <a routerLink="/postajob">Post a Job</a>
+            <a routerLink="/jobs">Jobs</a>
+          </ng-container>
+          <ng-container *ngIf="user && user.userType === 'student'">
+            <a routerLink="/jobs">Apply for Jobs</a>
+          </ng-container>
+        </div>
+      </div>
+
+      <ng-container *ngIf="user && user.userType === 'student'">
+        <a routerLink="/C.V">C.V</a>
+      </ng-container>
+      <ng-container *ngIf="user && user.userType === 'employer'">
+        <a routerLink="/viewmentoring">Mentoring</a>
+      </ng-container>
+      <ng-container *ngIf="user && user.userType === 'student'">
+        <a routerLink="/mentoring">Mentoring</a>
+      </ng-container>
+      <ng-container *ngIf="user && user.userType === 'student'">
+        <a routerLink="/training">Training</a>
+      </ng-container>
+    </ng-container>
+  </div>
+</nav>
